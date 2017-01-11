@@ -1,0 +1,58 @@
+#
+# Dependencies for lamss-internal only 
+#
+# This is a makefile in disguise.  WHITESPACE IS IMPORTANT, especially tabs. In emacs, you should do "M-x makefile-mode" to assist to syntax
+#
+# TO ADD YOUR DEPENDENCIES:
+# 1. if your dependency has the same package name for all supported distributions (newest Ubuntu LTS and newer), add it to the list under "all". Otherwise, add the correct package name under each distribution name.
+# 2. avoid the use of "sudo" in your commands; that is for the user to work out
+#
+# Send issues concerning this file to ijk5@mit.edu or tes@mit.edu
+#
+#
+
+
+all:
+	@echo "Installing distribution non-specific dependencies"
+
+ubuntu: all
+	@echo
+	@echo "Installing Ubuntu specific dependencies"
+	@apt-get install \
+                python2.7-dev \
+		python-numpy \
+		python-scipy \
+		libboost-python-dev \
+		cython \
+		-y
+
+trusty: saucy
+saucy: raring
+raring: quantal
+
+quantal: ubuntu
+	@echo "Installing quantal specific dependencies"
+
+precise: oneiric
+	@echo
+	@echo "Installing precise specific dependencies"
+
+oneiric: ubuntu
+	@echo
+	@echo "Installing oneiric specific dependencies"
+
+natty: ubuntu
+	@echo
+	@echo "Installing natty specific dependencies"
+
+lucid:  ubuntu
+	@echo
+	@echo "Installing lucid specific dependencies"
+
+squeeze: debian
+
+debian: all
+
+doc:	
+	@echo
+	@echo "Installing documentation specific dependencies"
